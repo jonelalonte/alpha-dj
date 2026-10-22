@@ -1,13 +1,23 @@
-import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import librosa
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder=".", template_folder=".")
 CORS(app)
 
 UPLOAD_FOLDER = "temp_uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+
+@app.route("/")
+def serve_index():
+  return send_from_directory(".", "index.html")
+
+
+@app.route("/<path:path>")
+def serve_static(path):
+  return send_from_directory(".", path)
 
 
 @app.route("/detect-bpm", methods=["POST"])
