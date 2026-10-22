@@ -404,16 +404,15 @@ const trackLoadRequests = { A: 0, B: 0 };
         formData.append("audio", file, file.name);
 
         try {
-            const response = await fetch(
-                   "/detect-bpm",
-                   {
-                       method: "POST",
-                       body: formData
-                   }
-               );
-            );
+        const response = await fetch(
+            "/detect-bpm",
+            {
+                method: "POST",
+                body: formData
+            }
+        );
 
-            const data = await response.json();
+        const data = await response.json();
 
             if (requestId !== trackLoadRequests[deck]) return;
 
