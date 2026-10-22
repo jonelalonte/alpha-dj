@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ALPHA DJ - ALONTE Studio Pro</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  
+
+  <!-- MASTER EQUALIZER -->
+  <div id="equalizerPanel" class="eq-console">
+
+    <div class="eq-header">
+      <div>
+        <div class="eq-title">MASTER EQUALIZER</div>
+        <div class="eq-subtitle">MIXLABDJ AUDIO ENGINE</div>
+      </div>
+
+      <button
+        type="button"
+        class="eq-close"
+        onclick="toggleEqualizer()"
+        aria-label="Close equalizer"
+      >&times;</button>
+    </div>
+
+    <div class="eq-toolbar">
+      <label class="eq-power">
+        <input type="checkbox" id="eqOnCheck" checked>
+        <span>EQ POWER</span>
+      </label>
+
+      <div class="eq-preset-control">
+        <label for="eqPreset">PRESET</label>
+
+        <select id="eqPreset">
+          <option>Flat</option>
+          <option>Club Master</option>
+          <option>Deep Bass</option>
+          <option>Vocal Boost</option>
+          <option>Electronic</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="eq-rack">
+
+      <div class="eq-master">
+        <span class="eq-label">MASTER</span>
+
+        <div class="eq-slider-area">
+          <input
+            type="range"
+            id="eqMasterGain"
+            class="eq-slider"
+            min="-12"
+            max="12"
+            step="0.5"
+            value="0"
+          >
+        </div>
+
+        <output id="eqMasterValue">0 dB</output>
+        <span class="eq-frequency">GAIN</span>
+      </div>
+
+      <div class="eq-bands">
+
+        <div class="eq-band">
+          <output id="eqValue32">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="32" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>32</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue64">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="64" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>64</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue125">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="125" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>125</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue250">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="250" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>250</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue500">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="500" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>500</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue1000">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="1000" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>1k</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue2000">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="2000" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>2k</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue4000">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="4000" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>4k</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue8000">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="8000" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>8k</strong><small>Hz</small>
+        </div>
+
+        <div class="eq-band">
+          <output id="eqValue16000">0</output>
+          <div class="eq-slider-area">
+            <input type="range" class="eq-slider"
+              data-frequency="16000" min="-12" max="12"
+              step="0.5" value="0">
+          </div>
+          <strong>16k</strong><small>Hz</small>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="eq-footer">
+      <span>● 10-BAND EQUALIZER</span>
+      <span>±12 dB</span>
+    </div>
+  </div>
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+
+    <div class="logo-area">
+      <span class="brand">ALONTE<span class="highlight"> DJ</span></span>
+      <span class="version">PRO v1.0</span>
+    </div>
+
+    <button
+      type="button"
+      onclick="toggleEqualizer()"
+      class="btn btn-sm btn-outline-warning ms-3"
+    >
+      <i class="bi bi-sliders"></i> EQUALIZER
+    </button>
+
+    <div class="master-meter-area">
+      <div class="vu-meter">
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- MASTER WAVEFORM -->
+  <section class="master-waveform-panel">
+
+    <div class="master-waveform-header">
+      <span><i class="deck-a-dot"></i> DECK A</span>
+      <span class="master-title">RHYTHM OVERVIEW</span>
+      <span>DECK B <i class="deck-b-dot"></i></span>
+    </div>
+
+    <canvas id="masterWaveform"></canvas>
+
+  </section>
+
+  <!-- DJ WORKSPACE -->
+  <main class="dj-workspace">
+
+    <!-- DECK A -->
+    <article class="deck deck-a">
+
+      <h2>Deck A</h2>
+
+      <input
+        type="file"
+        id="fileA"
+        accept="audio/*"
+        class="form-control form-control-sm bg-dark text-light border-secondary mb-2"
+      >
+
+      <audio id="audioA" preload="metadata"></audio>
+
+      <div class="deck-main-area d-flex align-items-center justify-content-center gap-3">
+
+        <div class="led-meter-container">
+          <div id="meterA" class="led-meter">
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+          </div>
+        </div>
+
+        <div class="jog-container">
+          <div class="jog-wheel" id="jogA">
+            <div class="jog-line"></div>
+            <div class="jog-center">A</div>
+          </div>
+        </div>
+
+        <div class="pitch-control pitch-a">
+          <div class="pitch-heading">PITCH</div>
+          <div class="pitch-value" id="pitchValueA">+0.0%</div>
+
+          <div class="pitch-fader">
+            <input
+              type="range"
+              id="pitchA"
+              class="pitch-slider"
+              min="-50"
+              max="50"
+              step="0.5"
+              value="0"
+              aria-label="Deck A pitch"
+            >
+          </div>
+
+          <button
+            type="button"
+            class="pitch-reset"
+            onclick="resetPitch('A')"
+          >RESET</button>
+        </div>
+
+        <div class="d-flex flex-column gap-2">
+
+          <div class="bg-black border border-secondary text-light p-1 rounded text-center"
+               style="width:65px">
+            <div style="font-size:8px;color:#ffc107;font-weight:bold">BPM</div>
+            <div id="bpmDisplayA" style="font-size:11px;font-weight:bold">0</div>
+          </div>
+
+          <div class="bg-black border border-secondary text-light p-1 rounded text-center"
+               style="width:65px">
+            <div style="font-size:8px;color:#0d6efd;font-weight:bold">TIME</div>
+            <div id="timeDisplayA" style="font-size:11px;font-weight:bold">0:00</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="playback-buttons deck-a-controls d-flex justify-content-center gap-2 my-2">
+
+        <button type="button" onclick="cueTrack('A')"
+                class="dj-control cue-btn" title="Cue">
+          <span class="control-label">CUE</span>
+        </button>
+
+        <button type="button" onclick="pauseTrack('A')"
+                class="dj-control pause-btn" title="Pause">
+          <i class="bi bi-pause-fill"></i>
+        </button>
+
+        <button type="button" onclick="playTrack('A')"
+                class="dj-control play-btn" title="Play">
+          <i class="bi bi-play-fill"></i>
+        </button>
+
+        <button type="button" onclick="syncTrack('A')"
+                class="dj-control sync-btn" title="Sync">
+          <span class="control-label">SYNC</span>
+        </button>
+
+      </div>
+
+      <p id="nameA" class="track-name text-truncate">No track loaded</p>
+      <!-- DECK A TIMELINE -->
+<div class="deck-timeline-box">
+  <div class="canvas-wrapper">
+    <div class="red-playhead-line"></div>
+    <canvas id="deckAWaveform" width="500" height="45"></canvas>
+  </div>
+</div>
+    </article>
+
+    <!-- AUDIO MIXER -->
+    <section class="mixer">
+
+      <h2>Audio Mixer</h2>
+
+      <div class="mixer-channels-grid">
+
+        <div class="mixer-strip">
+
+          <span class="channel-title">CH 1</span>
+
+          <span class="eq-label">GAIN</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">HIGH</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">MID</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">LOW</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">FX</span>
+          <div class="knob-small red"></div>
+
+          <span class="eq-label">LEVEL</span>
+
+          <div class="vertical-slider-container">
+            <input
+              type="range"
+              id="levelA"
+              class="vertical-slider"
+              min="0"
+              max="100"
+              value="80"
+              aria-label="Deck A volume"
+            >
+          </div>
+
+        </div>
+
+        <div class="mixer-strip">
+
+          <span class="channel-title">CH 2</span>
+
+          <span class="eq-label">GAIN</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">HIGH</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">MID</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">LOW</span>
+          <div class="knob-small"></div>
+
+          <span class="eq-label">FX</span>
+          <div class="knob-small red"></div>
+
+          <span class="eq-label">LEVEL</span>
+
+          <div class="vertical-slider-container">
+            <input
+              type="range"
+              id="levelB"
+              class="vertical-slider"
+              min="0"
+              max="100"
+              value="80"
+              aria-label="Deck B volume"
+            >
+          </div>
+
+        </div>
+      </div>
+
+     <!-- CROSSFADER -->
+<div class="crossfader-container">
+  <label class="crossfader-label" for="crossfader">
+    Crossfader
+  </label>
+
+  <div class="crossfader-track-wrapper">
+    <!-- Left Arrow (Deck A) -->
+    <button type="button" class="cf-arrow cf-left" id="cfLeftBtn" title="Quick Switch to Deck A">&#9664;</button>
+
+    <div class="crossfader-ticks">
+      <span class="tick long"></span>
+      <span class="tick short"></span>
+      <span class="tick short"></span>
+      <span class="tick short"></span>
+      <span class="tick medium"></span>
+      <span class="tick short"></span>
+      <span class="tick short"></span>
+      <span class="tick short"></span>
+      <span class="tick long"></span>
+    </div>
+
+    <input
+      type="range"
+      id="crossfader"
+      class="custom-crossfader"
+      min="0"
+      max="100"
+      value="50"
+      aria-label="Crossfader"
+    >
+
+    <!-- Right Arrow (Deck B) -->
+    <button type="button" class="cf-arrow cf-right" id="cfRightBtn" title="Quick Switch to Deck B">&#9654;</button>
+  </div>
+</div>
+
+      <p id="status" role="status">Audio Console Ready</p>
+
+    </section>
+
+    <!-- DECK B -->
+    <article class="deck deck-b">
+
+      <h2>Deck B</h2>
+
+      <input
+        type="file"
+        id="fileB"
+        accept="audio/*"
+        class="form-control form-control-sm bg-dark text-light border-secondary mb-2"
+      >
+
+      <audio id="audioB" preload="metadata"></audio>
+
+      <div class="deck-main-area d-flex align-items-center justify-content-center gap-3">
+
+        <div class="led-meter-container">
+          <div id="meterB" class="led-meter">
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+            <div class="led-segment"></div>
+          </div>
+        </div>
+
+        <div class="jog-container">
+          <div class="jog-wheel" id="jogB">
+            <div class="jog-line"></div>
+            <div class="jog-center">B</div>
+          </div>
+        </div>
+
+        <div class="pitch-control pitch-b">
+          <div class="pitch-heading">PITCH</div>
+          <div class="pitch-value" id="pitchValueB">+0.0%</div>
+
+          <div class="pitch-fader">
+            <input
+              type="range"
+              id="pitchB"
+              class="pitch-slider"
+              min="-50"
+              max="50"
+              step="0.5"
+              value="0"
+              aria-label="Deck B pitch"
+            >
+          </div>
+
+          <button
+            type="button"
+            class="pitch-reset"
+            onclick="resetPitch('B')"
+          >RESET</button>
+        </div>
+
+        <div class="d-flex flex-column gap-2">
+
+          <div class="bg-black border border-secondary text-light p-1 rounded text-center"
+               style="width:65px">
+            <div style="font-size:8px;color:#ffc107;font-weight:bold">BPM</div>
+            <div id="bpmDisplayB" style="font-size:11px;font-weight:bold">0</div>
+          </div>
+
+          <div class="bg-black border border-secondary text-light p-1 rounded text-center"
+               style="width:65px">
+            <div style="font-size:8px;color:#0d6efd;font-weight:bold">TIME</div>
+            <div id="timeDisplayB" style="font-size:11px;font-weight:bold">0:00</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="playback-buttons deck-b-controls d-flex justify-content-center gap-2 my-2">
+
+        <button type="button" onclick="cueTrack('B')"
+                class="dj-control cue-btn" title="Cue">
+          <span class="control-label">CUE</span>
+        </button>
+
+        <button type="button" onclick="pauseTrack('B')"
+                class="dj-control pause-btn" title="Pause">
+          <i class="bi bi-pause-fill"></i>
+        </button>
+
+        <button type="button" onclick="playTrack('B')"
+                class="dj-control play-btn" title="Play">
+          <i class="bi bi-play-fill"></i>
+        </button>
+
+        <button type="button" onclick="syncTrack('B')"
+                class="dj-control sync-btn" title="Sync">
+          <span class="control-label">SYNC</span>
+        </button>
+
+      </div>
+
+      <p id="nameB" class="track-name text-truncate">No track loaded</p>
+
+      <!-- DECK B TIMELINE -->
+<div class="deck-timeline-box">
+  <div class="canvas-wrapper">
+    <div class="red-playhead-line"></div>
+    <canvas id="deckBWaveform" width="500" height="45"></canvas>
+  </div>
+</div>
+
+    </article>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
