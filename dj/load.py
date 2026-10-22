@@ -38,8 +38,11 @@ def detect_bpm():
   print(f"-> Na-save ang pansamantalang file sa: {file_path}")
 
   try:
-    print("-> Sinisimulan nang basahin ng Librosa ang audio...")
-    y, sr = librosa.load(file_path, sr=None)
+    print(
+        "-> Sinisimulan nang basahin ng Librosa ang audio (memory-optimized)..."
+    )
+    # Binabaan ang sample rate at nilagyan ng 30-second duration limit para maging ligtas sa RAM limits ng Render
+    y, sr = librosa.load(file_path, sr=22050, duration=30.0)
     print(f"-> Tapos nang basahin. Sample rate: {sr}, haba (y): {len(y)}")
 
     print("-> Sinasukat ang beat/tempo...")
