@@ -683,109 +683,367 @@ body {
     font-size: 9px;
 }
 
-
-
 /* =========================================
-   AUDIO MIXER - SLIGHTLY SMALLER
-   Original design preserved
+   AUDIO MIXER
 ========================================= */
 
 .mixer {
-    padding: 7px;
+    background: linear-gradient(145deg, #1a1a1a, #080808);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-between;
+    border-left: 1px solid #363636;
+    border-right: 1px solid #363636;
+    border-top: 1px solid #303030;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    box-shadow:
+        inset 1px 0 0 rgba(255, 255, 255, 0.035),
+        inset -1px 0 0 rgba(255, 255, 255, 0.035),
+        0 0 12px rgba(0, 0, 0, 0.5);
 }
 
 .mixer h2 {
-    font-size: 12px;
-    margin-bottom: 4px;
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+    margin: 0 0 6px;
+    text-shadow: 0 2px 3px #000;
 }
 
 .mixer-channels-grid {
-    gap: 5px;
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex: 1;
+    min-height: 0;
 }
 
 .mixer-strip {
-    padding: 4px 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background: linear-gradient(145deg, #202020, #101010);
+    padding: 6px 4px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -3px 5px rgba(0, 0, 0, 0.6),
+        0 2px 5px rgba(0, 0, 0, 0.75);
 }
 
 .channel-title {
-    font-size: 10px;
+    font-size: 11px;
+    color: #b6d2ff;
+    font-weight: bold;
+    text-shadow: 0 1px 2px #000;
 }
 
 .eq-label {
-    font-size: 7px;
+    font-size: 8px;
+    color: #aaa;
+    font-weight: bold;
+    text-shadow: 0 1px 2px #000;
 }
 
-/* Knobs: same original design, slightly smaller */
+.mixer-strip:nth-child(1) .knob-small::after {
+    background-color: #2fd381;
+}
+
+.mixer-strip:nth-child(2) .knob-small::after {
+    background-color: #2196f3;
+}
+
+/* =========================================
+   MIXER KNOBS
+========================================= */
+
 .knob-small {
-    width: 27px;
-    height: 27px;
-    flex: 0 0 27px;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    background: radial-gradient(circle at 35% 30%, #393939 0%, #1a1a1a 55%, #050505 100%);
+    border: 1px solid #555;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.14),
+        inset 0 -4px 6px rgba(0, 0, 0, 0.9),
+        0 2px 3px #000,
+        0 0 0 1px rgba(255, 255, 255, 0.035);
+    transition: transform 0.05s ease, box-shadow 0.15s ease;
 }
 
 .knob-small::after {
+    content: "";
+    position: absolute;
     top: 4px;
-    height: 7px;
-}
-
-/* Vertical sliders: preserve original styling */
-.vertical-slider-container {
-    width: 25px;
-    height: 70px;
-    flex: 0 0 25px;
-}
-
-/* Keep original slider thumb appearance */
-input[type="range"].vertical-slider::-webkit-slider-thumb {
-    width: 17px;
+    left: 50%;
+    width: 2px;
     height: 8px;
-    transform: translateX(-6px);
+    background-color: #4caf50;
+    transform: translateX(-50%);
+    border-radius: 1px;
+    box-shadow: 0 0 3px currentColor;
+}
+
+.knob-small.red::after {
+    background-color: #f44336;
+}
+
+/* =========================================
+   VERTICAL SLIDERS
+========================================= */
+
+.vertical-slider-container {
+    background: linear-gradient(90deg, #050505, #171717, #070707);
+    border: 1px solid #414141;
+    border-radius: 4px;
+    padding: 4px 0;
+    height: 80px;
+    width: 28px;
+    flex: 0 0 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow:
+        inset 0 2px 4px #000,
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+        0 2px 4px #000b;
+}
+
+input[type="range"].vertical-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    touch-action: pan-x;
+}
+
+.mixer-strip:nth-child(1) input[type="range"].vertical-slider {
+    accent-color: #4caf50;
+}
+
+.mixer-strip:nth-child(2) input[type="range"].vertical-slider {
+    accent-color: #2196f3;
+}
+
+input[type="range"].vertical-slider::-webkit-slider-runnable-track {
+    width: 5px;
+    background: linear-gradient(to right, #080808, #555, #111);
+    border: 1px solid #444;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 2px #000;
+}
+
+input[type="range"].vertical-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 19px;
+    height: 9px;
+    transform: translateX(-7px);
+    background: linear-gradient(to bottom, #fff, #c5c5c5, #777, #292929);
+    border: 1px solid #111;
+    border-radius: 2px;
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.8),
+        inset 0 -1px 2px #333,
+        0 2px 4px #000;
+    cursor: grab;
+}
+
+input[type="range"].vertical-slider::-moz-range-track {
+    width: 5px;
+    background: #292929;
+    border: 1px solid #444;
+    border-radius: 3px;
 }
 
 input[type="range"].vertical-slider::-moz-range-thumb {
-    width: 15px;
-    height: 7px;
+    width: 17px;
+    height: 8px;
+    background: linear-gradient(to bottom, #fff, #999, #353535);
+    border: 1px solid #111;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px #000;
+    cursor: grab;
 }
 
-/* Crossfader: slightly more compact */
+/* =========================================
+   CROSSFADER
+========================================= */
+
 .crossfader-container {
-    padding: 6px 8px;
-    margin-top: 5px;
+    background: linear-gradient(145deg, #161616, #080808);
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid #414141;
+    margin-top: 8px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        inset 0 -3px 5px #0009,
+        0 3px 6px #000b;
 }
 
 .crossfader-label {
-    font-size: 8px;
-    margin-bottom: 3px;
+    display: block;
+    color: #999;
+    font-size: 9px;
+    margin-bottom: 4px;
 }
 
 .crossfader-track-wrapper {
-    height: 30px;
-    gap: 6px;
+    position: relative;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .crossfader-ticks {
-    padding: 0 6px;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* Preserve original crossfader thumb design */
+.crossfader-ticks .tick {
+    background-color: #777;
+    display: inline-block;
+    box-shadow: 0 0 2px #000;
+}
+
+.crossfader-ticks .tick.short {
+    width: 1px;
+    height: 8px;
+}
+
+.crossfader-ticks .tick.medium {
+    width: 1px;
+    height: 12px;
+}
+
+.crossfader-ticks .tick.long {
+    width: 2px;
+    height: 16px;
+    background-color: #fff;
+}
+
+input[type="range"].custom-crossfader {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    width: 100%;
+    z-index: 2;
+    margin: 0;
+    cursor: pointer;
+}
+
+input[type="range"].custom-crossfader::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(180deg, #050505, #292929, #080808);
+    border: 1px solid #454545;
+    border-radius: 2px;
+    box-shadow: inset 0 1px 2px #000;
+}
+
 input[type="range"].custom-crossfader::-webkit-slider-thumb {
-    width: 14px;
-    height: 24px;
-    margin-top: -10px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 28px;
+    width: 16px;
+    background: linear-gradient(to right, #222, #555, #222);
+    border: 1px solid #666;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: -12px;
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.2),
+        inset 0 -2px 3px #000,
+        0 3px 5px #000;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 40%,
+        #fff 40%,
+        #fff 60%,
+        transparent 60%
+    );
+    background-size: 4px 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+input[type="range"].custom-crossfader::-moz-range-track {
+    height: 6px;
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 2px;
 }
 
 input[type="range"].custom-crossfader::-moz-range-thumb {
-    width: 12px;
-    height: 21px;
+    height: 24px;
+    width: 14px;
+    background: linear-gradient(to right, #222, #555, #222);
+    border: 1px solid #666;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px #000;
 }
 
-/* Arrow buttons: slightly smaller */
+.crossfader-track-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Arrow Buttons Styling */
 .cf-arrow {
-    width: 23px;
-    height: 23px;
-    font-size: 10px;
+  background: #111827;
+  color: #38bdf8;
+  border: 1px solid #374151;
+  border-radius: 4px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.2s ease;
+  z-index: 5;
 }
 
+.cf-arrow:hover {
+  background: #1f2937;
+  color: #ffffff;
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
 
+.cf-arrow:active {
+  transform: scale(0.92);
+}
 
 /* =========================================
    STATUS
