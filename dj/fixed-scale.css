@@ -1,0 +1,118 @@
+
+/* =========================================
+   ALONTE DJ PRO — FIXED LAYOUT SCALING
+   Original desktop layout: 1366 x 768
+========================================= */
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important;
+    background: #0b0b0b;
+}
+
+body {
+    display: block !important;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Fixed-size DJ software interface */
+#appScaleShell {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 1366px;
+    height: 768px;
+    min-width: 1366px;
+    min-height: 768px;
+
+    display: grid;
+    grid-template-rows: 36px 85px minmax(0, 1fr);
+
+    transform-origin: top left;
+    overflow: hidden;
+    background: #0b0b0b;
+}
+
+/* Keep the original three-column DJ layout */
+#appScaleShell .dj-workspace {
+    grid-template-columns:
+        minmax(0, 1fr)
+        280px
+        minmax(0, 1fr) !important;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+/* Keep the original deck dimensions */
+#appScaleShell .deck {
+    padding: 8px !important;
+}
+
+#appScaleShell .deck-main-area {
+    gap: 12px !important;
+    min-height: 110px !important;
+}
+
+#appScaleShell .jog-wheel {
+    width: 100px !important;
+    height: 100px !important;
+    flex: 0 0 100px !important;
+}
+
+#appScaleShell .jog-center {
+    width: 35px !important;
+    height: 35px !important;
+    flex: 0 0 35px !important;
+}
+
+/* Keep mixer dimensions consistent */
+#appScaleShell .mixer {
+    padding: 10px !important;
+}
+
+#appScaleShell .mixer-channels-grid {
+    gap: 8px !important;
+}
+
+#appScaleShell .knob-small {
+    width: 30px !important;
+    height: 30px !important;
+    flex: 0 0 30px !important;
+}
+
+#appScaleShell .vertical-slider-container {
+    width: 28px !important;
+    height: 80px !important;
+    flex: 0 0 28px !important;
+}
+
+/* Preserve pitch faders */
+#appScaleShell .pitch-control {
+    width: 40px !important;
+    min-width: 40px !important;
+    flex: 0 0 40px !important;
+    height: 124px !important;
+}
+
+#appScaleShell .pitch-fader {
+    width: 29px !important;
+    height: 70px !important;
+    flex: 0 0 70px !important;
+}
+
+#appScaleShell .pitch-slider {
+    width: 25px !important;
+    min-width: 25px !important;
+    height: 64px !important;
+}
+
+/* Scale the entire interface proportionally.
+   Do not resize individual controls for mobile. */
