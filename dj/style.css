@@ -684,19 +684,19 @@ body {
 }
 
 
+
 /* =========================================
-   COMPACT AUDIO MIXER
-   Mas maliit na controls
+   AUDIO MIXER - SLIGHTLY SMALLER
+   Original design preserved
 ========================================= */
 
 .mixer {
-    padding: 6px;
-    gap: 4px;
+    padding: 7px;
 }
 
 .mixer h2 {
     font-size: 12px;
-    margin: 0 0 3px;
+    margin-bottom: 4px;
 }
 
 .mixer-channels-grid {
@@ -704,115 +704,87 @@ body {
 }
 
 .mixer-strip {
-    padding: 4px 2px;
-    gap: 3px;
+    padding: 4px 3px;
 }
 
 .channel-title {
-    font-size: 9px;
+    font-size: 10px;
 }
 
 .eq-label {
     font-size: 7px;
 }
 
-/* Smaller knobs */
+/* Knobs: same original design, slightly smaller */
 .knob-small {
-    width: 23px;
-    height: 23px;
-    flex: 0 0 23px;
+    width: 27px;
+    height: 27px;
+    flex: 0 0 27px;
 }
 
 .knob-small::after {
-    top: 3px;
-    height: 6px;
-    width: 2px;
-}
-
-/* Smaller vertical sliders */
-.vertical-slider-container {
-    width: 22px;
-    height: 62px;
-    flex: 0 0 22px;
-    padding: 3px 0;
-}
-
-input[type="range"].vertical-slider::-webkit-slider-runnable-track {
-    width: 4px;
-}
-
-input[type="range"].vertical-slider::-webkit-slider-thumb {
-    width: 15px;
+    top: 4px;
     height: 7px;
-    transform: translateX(-5px);
 }
 
-input[type="range"].vertical-slider::-moz-range-track {
-    width: 4px;
+/* Vertical sliders: preserve original styling */
+.vertical-slider-container {
+    width: 25px;
+    height: 70px;
+    flex: 0 0 25px;
+}
+
+/* Keep original slider thumb appearance */
+input[type="range"].vertical-slider::-webkit-slider-thumb {
+    width: 17px;
+    height: 8px;
+    transform: translateX(-6px);
 }
 
 input[type="range"].vertical-slider::-moz-range-thumb {
-    width: 14px;
-    height: 6px;
+    width: 15px;
+    height: 7px;
 }
 
-/* Smaller crossfader panel */
+/* Crossfader: slightly more compact */
 .crossfader-container {
-    padding: 5px 6px;
-    margin-top: 4px;
+    padding: 6px 8px;
+    margin-top: 5px;
 }
 
 .crossfader-label {
     font-size: 8px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 
 .crossfader-track-wrapper {
-    height: 27px;
-    gap: 4px;
+    height: 30px;
+    gap: 6px;
 }
 
 .crossfader-ticks {
-    padding: 0 5px;
+    padding: 0 6px;
 }
 
-.crossfader-ticks .tick.short {
-    height: 5px;
-}
-
-.crossfader-ticks .tick.medium {
-    height: 8px;
-}
-
-.crossfader-ticks .tick.long {
-    height: 11px;
-}
-
-input[type="range"].custom-crossfader::-webkit-slider-runnable-track {
-    height: 4px;
-}
-
+/* Preserve original crossfader thumb design */
 input[type="range"].custom-crossfader::-webkit-slider-thumb {
-    width: 12px;
-    height: 21px;
-    margin-top: -9px;
-}
-
-input[type="range"].custom-crossfader::-moz-range-track {
-    height: 4px;
+    width: 14px;
+    height: 24px;
+    margin-top: -10px;
 }
 
 input[type="range"].custom-crossfader::-moz-range-thumb {
-    width: 11px;
-    height: 19px;
+    width: 12px;
+    height: 21px;
 }
 
-/* Smaller arrow buttons */
+/* Arrow buttons: slightly smaller */
 .cf-arrow {
-    width: 20px;
-    height: 20px;
-    font-size: 9px;
+    width: 23px;
+    height: 23px;
+    font-size: 10px;
 }
+
 
 
 /* =========================================
